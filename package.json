@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn parcel public/index.html",
-    "build": "yarn parcel build public/index.html"
+    "build": "yarn parcel build public/index.html",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@types/d3": "^5.0.0",
