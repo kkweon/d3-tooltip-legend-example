@@ -1,0 +1,22 @@
+{
+  "name": "tooltip-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn parcel public/index.html",
+    "build": "yarn parcel build public/index.html"
+  },
+  "dependencies": {
+    "@types/d3": "^5.0.0",
+    "d3": "^4.13.0",
+    "parcel-bundler": "^1.6.2",
+    "parcel-plugin-typescript": "^0.7.0",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "tslint": "^5.9.1"
+  }
+}
