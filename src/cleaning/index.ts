@@ -1,4 +1,5 @@
-import { yearlyKeys, featureX, featureY, featureR, featureC } from "./features";
+import { ICleanedData, ICountry } from "../typing";
+import { featureC, featureR, featureX, featureY, yearlyKeys } from "./features";
 
 function getNewKey(feature: string): string {
   switch (feature) {
@@ -33,24 +34,25 @@ export function cleanData(data: ICountry[]): ICleanedData[] {
   data.forEach(d => {
     const country = d.country_name;
 
-    if ([featureX, featureY, featureR, featureC].includes(d.series_name))
+    if ([featureX, featureY, featureR, featureC].includes(d.series_name)) {
       yearlyKeys.forEach(yearKey => {
         const year = +yearKey.slice(1);
-        const result = cleanedData.get([country, year]);
+        const result = cleanedData.get([country, year].toString());
 
         const newKey = getNewKey(d.series_name);
 
-        cleanedData.set([country, year], {
+        cleanedData.set([country, year].toString(), {
           ...result,
           [newKey]: d[yearKey],
           year,
         });
       });
+    }
   });
 
   const dataArray = Array.from(cleanedData.entries());
   return dataArray.map(x => {
-    const country = x[0][0];
+    const country = x[0].split(",")[0];
     const result = x[1];
 
     return {

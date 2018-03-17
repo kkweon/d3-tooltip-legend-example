@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 
-interface ICountry {
+export interface ICountry {
   country_code: string;
   country_name: string;
   series_code: string;
@@ -18,7 +18,7 @@ interface ICountry {
   [country: string]: string | number;
 }
 
-interface ICleanedData {
+export interface ICleanedData {
   country: string;
   year: number;
   gdp: number;
@@ -27,13 +27,20 @@ interface ICleanedData {
   poverty_rate: number;
 }
 
-interface ISize {
+export interface ISize {
   width: number;
   height: number;
   padding: number;
 }
 
-interface IScale {
+export interface IScale {
   x: d3.ScaleLinear<number, number>;
   y: d3.ScaleLinear<number, number>;
+  r: d3.ScaleLinear<number, number>;
+  color: d3.ScaleLinear<number, number>;
+}
+
+export interface IAxes {
+  x: d3.Axis<number | { valueOf(): number }>;
+  y: d3.Axis<number | { valueOf(): number }>;
 }
