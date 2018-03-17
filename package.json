@@ -5,8 +5,10 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn parcel public/index.html",
-    "build": "yarn parcel build public/index.html",
-    "clean": "rm -rf dist"
+    "build": "yarn clean && yarn parcel build public/index.html --public-url .",
+    "serve": "serve -s dist/",
+    "clean": "rm -rf dist",
+    "github": "ghp-import -p -b gh-pages dist/"
   },
   "dependencies": {
     "@types/d3": "^5.0.0",

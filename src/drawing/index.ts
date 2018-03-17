@@ -54,7 +54,7 @@ export function render(
 
   if (yearlyData.length === 0) {
     d3
-      .select("#chart")
+      .select("svg")
       .append("text")
       .classed("error--empty", true)
       .attr("x", size.width / 2)
@@ -71,7 +71,7 @@ export function render(
   scales.color.domain(d3.extent(yearlyData, d => d.poverty_rate) as any);
 
   const countries = d3
-    .select("#chart")
+    .select("svg")
     .selectAll(".country")
     .data(yearlyData);
 
@@ -119,8 +119,8 @@ export function render(
   d3.select(".y-axis").call(axes.y as any);
 
   // create radius legend
-  const radiusLegend = (legendSize().scale(scales.r) as any)
-    .shape("circle")
+  const radiusLegend = legendSize()
+    .orient("vertical")
     .shapePadding(15)
     .labelOffset(20)
     .labels(
@@ -128,12 +128,13 @@ export function render(
         d3.formatPrefix(",.0", 1e6)(generatedLabels[i]),
     )
     .title("Population")
-    .orient("vertical");
+    .shape("circle")
+    .scale(scales.r);
 
   d3.select(".legend--radius").call(radiusLegend);
 
   // create poverty legend - color
-  const povertyLegend = (legendColor().scale(scales.color) as any)
+  const povertyLegend = legendColor()
     .cells(3)
     .orient("vertical")
     .title("Poverty Rate")
@@ -141,7 +142,8 @@ export function render(
       ({ i, generatedLabels }: { i: number; generatedLabels: number[] }) =>
         generatedLabels[i] + "%",
     )
-    .shapeWidth(30);
+    .shapeWidth(30)
+    .scale(scales.color);
 
   d3.select(".legend--poverty").call(povertyLegend);
 }

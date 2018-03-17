@@ -34,7 +34,7 @@ export function cleanData(data: ICountry[]): ICleanedData[] {
   data.forEach(d => {
     const country = d.country_name;
 
-    if ([featureX, featureY, featureR, featureC].includes(d.series_name)) {
+    if ([featureX, featureY, featureR, featureC].indexOf(d.series_name) > -1) {
       yearlyKeys.forEach(yearKey => {
         const year = +yearKey.slice(1);
         const result = cleanedData.get([country, year].toString());

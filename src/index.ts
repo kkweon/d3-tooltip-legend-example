@@ -23,13 +23,13 @@ function main(error: any, data: ICountry[]) {
   }
 
   const size: ISize = {
-    width: 600,
     height: 600,
     padding: 50,
+    width: 600,
   };
 
   const svg = d3
-    .select("#chart")
+    .select("svg")
     .attr("width", size.width)
     .attr("height", size.height);
 
